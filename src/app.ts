@@ -1,21 +1,20 @@
 interface Person {
     name: string;
-    age: number;
+    age?: number;
 }
 
-type MyPartial<T> = {
-    [P in keyof T]?: T[P]
+type MyRequired<T> = {
+    [P in keyof T]-?: T[P]  // Minus removes the optional
+    // can also use +/- readonly
+};
+
+function printAge(person: MyRequired<Person>) {
+    return `${person.name} is ${person.age}`;
 }
 
-function updatePerson(person: Person, prop: Partial<Person>) {
-    return { ...person, ...prop };
-}
-
-let person: Person = {
+const person: Required<Person> = {
     name: 'Todd',
     age: 27
 };
 
-console.log(person);
-person = updatePerson(person, {name: 'ABC'});
-console.log(person);
+const age = printAge(person);
