@@ -3,17 +3,19 @@ interface Person {
     age: number;
 }
 
-const person: Person = {
+type MyPartial<T> = {
+    [P in keyof T]?: T[P]
+}
+
+function updatePerson(person: Person, prop: Partial<Person>) {
+    return { ...person, ...prop };
+}
+
+let person: Person = {
     name: 'Todd',
     age: 27
 };
 
-type MyReadonly<T> = {
-    readonly [P in keyof T]: T[P]
-};
-
-function freeze<T>(obj: T): Readonly<T> {
-    return Object.freeze(obj);
-}
-
-const newPerson = freeze(person);
+console.log(person);
+person = updatePerson(person, {name: 'ABC'});
+console.log(person);
