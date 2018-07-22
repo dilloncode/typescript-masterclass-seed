@@ -14,9 +14,13 @@ class Song {
 class Playlist {
     constructor(public name: string, public songs: Song[]) { }
 }
+// item is song types input, returns boolean
+function isSong(item:any): item is Song {
+    return item instanceof Song;
+}
 
 function getItemName(item: Song | Playlist) {
-    if (item instanceof Song) {
+    if (isSong(item)) {
         return item.title;
     }
     return item.name;
