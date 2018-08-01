@@ -1,21 +1,17 @@
-interface Item {
-    name: string;
+// interface Artist {
+//     name: string;
+// }
+
+class ArtistCreator /*implements Artist*/ {
+    constructor(public name: string){}
 }
 
-interface Artist extends Item {
-    songs: number;
+// function artistFactory({ name }: Artist) {
+//     return { id: 101, name };
+// }
+
+function artistFactory({ name }: ArtistCreator) {
+    return new ArtistCreator(name);
 }
 
-interface Artist {
-    getSongs(): number;
-}
-
-type Artist2 = { name: string; } & Item;
-
-const newArtist: Artist = {
-    name: 'ABC',
-    songs: 5,
-    getSongs() {
-        return this.songs;
-    }
-}
+artistFactory({name: 'Todd'});
