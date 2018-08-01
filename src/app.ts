@@ -1,16 +1,23 @@
-enum Sizes {
-    Small,
-    Medium,
-    Large
+// enum Sizes {
+//     Small = 'small',
+//     Medium = 'medium',
+//     Large = 'large'
+// }
+
+/* makes the output JS constants */
+const enum Sizes {
+    Small = 'small',
+    Medium = 'medium',
+    Large = 'large'
 }
 
-enum Sizes {
-    ExtraLarge = 3,
+
+let selected: Sizes = Sizes.Small;
+
+function updateSize(size: Sizes): void {
+    selected = size;
 }
 
-console.log(Sizes.Medium);
-console.log(Sizes.Large, Sizes[Sizes.Large]);
+updateSize(Sizes.Large);
 
-const selectedSize = 2;
-
-console.log(Sizes[selectedSize]);
+console.log(selected);
